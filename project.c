@@ -213,7 +213,8 @@ void dHashing() {
  */
 void insert() {
   scanf("%d", &r.chave);
-  scanf("%20s", &r.nome);
+  scanf("%[^\n]20s", &r.nome);
+  setbuf(stdin, NULL);
   scanf("%d", &r.idade);
   r.next = -1;
   r.previous = -1;
