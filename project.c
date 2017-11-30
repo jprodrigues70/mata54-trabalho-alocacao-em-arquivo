@@ -100,7 +100,9 @@ void printFile() {
           printf("%d: %d %s %d %d\n", i, p.chave, p.nome, p.idade, p.next);
       }
     } else {
-      printf("%d: vazio\n", i);
+      printf("%d: vazio", i);
+      if (type == L && p.next == -1) printf(" nulo");
+      printf("\n");
     }
   }
 }
@@ -215,6 +217,7 @@ void insert() {
   scanf("%d", &r.chave);
   getchar();
   scanf("%[^\n]s", &r.nome);
+  r.nome[20] = '\0';
   getchar();
   scanf("%d", &r.idade);
   r.next = -1;
