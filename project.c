@@ -95,9 +95,9 @@ void printFile() {
         printf("%d: %d %s %d\n", i, p.chave, p.nome, p.idade);
       } else if (type == L) {
         if (p.next == -1)
-          printf("%d: %d %s %d nulo %d\n", i, p.chave, p.nome, p.idade, p.previous);
+          printf("%d: %d %s %d nulo\n", i, p.chave, p.nome, p.idade);
         else
-          printf("%d: %d %s %d %d %d\n", i, p.chave, p.nome, p.idade, p.next, p.previous);
+          printf("%d: %d %s %d %d\n", i, p.chave, p.nome, p.idade, p.next);
       }
     } else {
       printf("%d: vazio\n", i);
@@ -213,8 +213,9 @@ void dHashing() {
  */
 void insert() {
   scanf("%d", &r.chave);
-  scanf("%[^\n]20s", &r.nome);
-  setbuf(stdin, NULL);
+  getchar();
+  scanf("%[^\n]s", &r.nome);
+  getchar();
   scanf("%d", &r.idade);
   r.next = -1;
   r.previous = -1;
@@ -360,17 +361,19 @@ float lMedia() {
     s = readLine(i);
     if (s.chave != -1) {
       for (f = h1(s.chave), h_count = 0; f != i; h_count++) {
-        if (s.previous == -1) break;
+        if (s.previous == -1) {
+          h_count++;
+          break;
+        }
 
         f = s.previous;
         s = readLine(f);
-        count++;
       }
       count += (h_count == 0)? 1 : h_count;
       items++;
     }
   }
-  printf("items: %d count: %d\n", items, count);
+
   it = items;
   co = count;
 
